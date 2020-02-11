@@ -14,7 +14,7 @@
 
 int main() {
 
-#if HAVE_DLFCN_H
+#if ENABLE_DYNAMIC
 	dlopen("test.so", RTLD_NOW);
 #endif
 
