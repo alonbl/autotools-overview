@@ -1,10 +1,8 @@
 AC_INIT([example], [0.0.0])
+AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
 
-CPPFLAGS="-I. ${CPPFLAGS}"
-
 AC_PROG_CC_STDC
-AC_PROG_INSTALL
 
 AC_CHECK_HEADERS([dlfcn.h])
 AC_CHECK_LIB([dl], [dlopen])
