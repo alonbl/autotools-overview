@@ -11,6 +11,10 @@ bin_PROGRAMS = \
 	prog1 \
 	$(NULL)
 
+lib_LIBRARIES = \
+	libcommon.a \
+	$(NULL)
+
 doc_DATA = \
 	README.md \
 	$(NULL)
@@ -29,5 +33,11 @@ TESTS = \
 
 prog1_SOURCES = \
 	main.c \
+	$(NULL)
+prog1_LDADD = \
+	libcommon.a \
+	$(NULL)
+
+libcommon_a_SOURCES = \
 	common.c common.h \
 	$(NULL)
