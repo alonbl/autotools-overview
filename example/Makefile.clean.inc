@@ -12,4 +12,5 @@ MAINTAINERCLEANFILES += \
 # automake junk
 MAINTAINERCLEANFILES += \
 	$(srcdir)/Makefile.in \
+	$(srcdir)/test-driver \
 	$(NULL)
