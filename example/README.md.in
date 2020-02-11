@@ -1,0 +1,4 @@
+# Example
+
+Version: @PACKAGE_VERSION@
+MY_VAR2: @MY_VAR2@
