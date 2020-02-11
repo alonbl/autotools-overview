@@ -37,14 +37,18 @@ TESTS = \
 	$(check_PROGRAMS) \
 	$(NULL)
 
+SUBDIRS = po
+
 prog1_SOURCES = \
 	main.c \
 	$(NULL)
 prog1_LDADD = \
 	libcommon.la \
+	$(LTLIBINTL) \
 	$(NULL)
 
 libcommon_la_SOURCES = \
+	gettext.h \
 	common.c common.h \
 	libcommon.exports \
 	$(NULL)
@@ -61,3 +65,6 @@ test_common_test_SOURCES = \
 test_common_test_LDADD = \
 	libcommon.la \
 	$(NULL)
+
+update-po:
+	cd po && $(MAKE) $(AM_MAKEFLAGS) update-po

@@ -14,9 +14,18 @@
 #include <dlfcn.h>
 #endif
 
+#include "gettext.h"
+#define _(x) gettext(x)
+
 #include "common.h"
 
 int main() {
+
+#if ENABLE_NLS
+	setlocale (LC_ALL, "");
+	bindtextdomain(PACKAGE, LOCALEDIR);
+	textdomain(PACKAGE);
+#endif
 
 #if ENABLE_DYNAMIC
 #ifdef _WIN32
@@ -28,7 +37,7 @@ int main() {
 #endif
 #endif
 
-	printf("The value of '%s' is '%s'\n", "MY_VAR1", MY_VAR1);
+	printf(_("The value of '%s' is '%s'\n"), "MY_VAR1", MY_VAR1);
 
 	common_foo();
 

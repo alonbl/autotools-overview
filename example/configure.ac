@@ -16,6 +16,11 @@ AC_PROG_CC_STDC
 AC_PROG_LIBTOOL
 AC_CANONICAL_HOST
 
+AM_GNU_GETTEXT_VERSION([0.19])
+AM_GNU_GETTEXT([external])
+
+CPPFLAGS="${CPPFLAGS} -DLOCALEDIR='\"\$(localedir)\"'"
+
 AS_CASE([${host}],
 	[*-*-mingw*], [CPPFLAGS="${CPPFLAGS} -DWIN32_LEAN_AND_MEAN"]
 )
@@ -50,4 +55,5 @@ AC_SUBST([MY_VAR2], [myvar2])
 AC_OUTPUT([
 	Makefile
 	README.md
+	po/Makefile.in
 ])
