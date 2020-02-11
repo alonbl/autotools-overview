@@ -1,3 +1,11 @@
+*.log
+*~
+Makefile
 README.md
+autom4te.cache/
+config.h
+config.h.in
+config.status
+configure
 prog1
 prog1.exe
