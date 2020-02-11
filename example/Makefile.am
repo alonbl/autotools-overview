@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = foreign
+ACLOCAL_AMFLAGS = -I m4
 
 MAINTAINERCLEANFILES =
 include Makefile.clean.inc
@@ -11,8 +12,8 @@ bin_PROGRAMS = \
 	prog1 \
 	$(NULL)
 
-lib_LIBRARIES = \
-	libcommon.a \
+lib_LTLIBRARIES = \
+	libcommon.la \
 	$(NULL)
 
 doc_DATA = \
@@ -40,16 +41,23 @@ prog1_SOURCES = \
 	main.c \
 	$(NULL)
 prog1_LDADD = \
-	libcommon.a \
+	libcommon.la \
 	$(NULL)
 
-libcommon_a_SOURCES = \
+libcommon_la_SOURCES = \
 	common.c common.h \
+	libcommon.exports \
+	$(NULL)
+libcommon_la_LDFLAGS = \
+	$(AM_LDFLAGS) \
+	-version-info @LIBCOMMON_LT_CURRENT@:@LIBCOMMON_LT_REVISION@:@LIBCOMMON_LT_AGE@ \
+	-export-symbols "$(srcdir)/libcommon.exports" \
+	-no-undefined \
 	$(NULL)
 
 test_common_test_SOURCES = \
 	test-common.c \
 	$(NULL)
 test_common_test_LDADD = \
-	libcommon.a \
+	libcommon.la \
 	$(NULL)
