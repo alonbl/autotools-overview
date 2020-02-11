@@ -8,6 +8,8 @@ MAINTAINERCLEANFILES += \
 	$(srcdir)/depcomp \
 	$(srcdir)/install-sh \
 	$(srcdir)/missing \
+	$(srcdir)/config.guess \
+	$(srcdir)/config.sub \
 	$(NULL)
 # automake junk
 MAINTAINERCLEANFILES += \

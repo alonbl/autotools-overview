@@ -3,7 +3,12 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
 
 AC_PROG_CC_STDC
+AC_CANONICAL_HOST
 AC_PROG_RANLIB
+
+AS_CASE([${host}],
+	[*-*-mingw*], [CPPFLAGS="${CPPFLAGS} -DWIN32_LEAN_AND_MEAN"]
+)
 
 AC_ARG_ENABLE(
 	[dynamic],
@@ -11,13 +16,20 @@ AC_ARG_ENABLE(
 	[
 		AS_IF(
 			[test "${enable_dynamic}" = "yes"],
-			[
-				AC_CHECK_HEADERS([dlfcn.h],, [AC_MSG_ERROR([Cannot find ${ac_header}])])
-				AC_CHECK_LIB([dl], [dlopen],, [AC_MSG_ERROR([Cannot find dl library])])
-			]
+			[AS_CASE([${host}],
+				[*-*-mingw*],,
+				[*-*-linux-*], [
+					AC_CHECK_HEADERS([dlfcn.h],, [AC_MSG_ERROR([Cannot find ${ac_header}])])
+					AC_CHECK_LIB([dl], [dlopen],, [AC_MSG_ERROR([Cannot find dl library])])
+				],
+				[AC_MSG_ERROR([Unsupported platform for dynamic])]
+			)]
 		)
 	],
-	[enable_dynamic=no]
+	[AS_CASE([${host}],
+		[*-*-mingw*],[enable_dynamic=yes],
+		[enable_dynamic=no]
+	)]
 )
 AC_DEFINE_UNQUOTED([ENABLE_DYNAMIC], [`test "${enable_dynamic}" = "yes" && echo 1 || echo 0`], [Dynamic is enabled])
 
