@@ -15,6 +15,18 @@ doc_DATA = \
 	README.md \
 	$(NULL)
 
+MY_TESTS = \
+	test-sanity.sh \
+	$(NULL)
+
+dist_noinst_DATA = \
+	$(MY_TESTS) \
+	$(NULL)
+
+TESTS = \
+	$(MY_TESTS) \
+	$(NULL)
+
 prog1_SOURCES = \
 	main.c \
 	common.c common.h \

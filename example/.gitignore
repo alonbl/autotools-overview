@@ -1,5 +1,7 @@
 *.log
 *.o
+*.test
+*.trs
 *~
 .deps/
 Makefile
@@ -18,3 +20,4 @@ missing
 prog1
 prog1.exe
 stamp-h1
+test-driver
